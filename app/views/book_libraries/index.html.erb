@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Book Libraries</h1>
+
+<div>
+<h4>Import data!</h4>
+  <%= form_tag import_book_libraries_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "import from file" %>
+<% end %>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Book pages</th>
+      <th>Author</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @book_libraries.each do |book_library| %>
+      <tr>
+        <td><%= book_library.title %></td>
+        <td><%= book_library.description %></td>
+        <td><%= book_library.book_pages %></td>
+        <td><%= book_library.author %></td>
+        <td><%= book_library.rating %></td>
+        <td><%= link_to 'Show', book_library %></td>
+        <td><%= link_to 'Edit', edit_book_library_path(book_library) %></td>
+        <td><%= link_to 'Destroy', book_library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book Library', new_book_library_path %>
