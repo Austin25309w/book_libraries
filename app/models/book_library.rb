@@ -2,6 +2,7 @@ class BookLibrary < ApplicationRecord
     require 'csv'
     require 'activerecord-import/base'
     require 'activerecord-import/active_record/adapters/postgresql_adapter'
+    belongs_to :user
 
     def self.my_import(file)
         books = []
@@ -10,4 +11,5 @@ class BookLibrary < ApplicationRecord
         end
         BookLibrary.import books, recursive: true
     end
+
 end
